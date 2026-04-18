@@ -1,0 +1,22 @@
+# --- Web ---
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.12
+pydantic==2.9.2
+pydantic-settings==2.5.2
+
+# --- ML / CV ---
+# NOTE: torch/torchvision install order matters for GPU. If deploying to GPU,
+# install torch from the CUDA index first (see Dockerfile). These pinned
+# versions work on CUDA 12.1 and CPU alike.
+torch==2.4.1
+torchvision==0.19.1
+ultralytics==8.3.0
+supervision==0.23.0
+opencv-python-headless==4.10.0.84
+scikit-image==0.24.0
+filterpy==1.4.5
+numpy==1.26.4
+
+# --- Utils ---
+tqdm==4.66.5

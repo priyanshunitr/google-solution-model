@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  sos-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile       # change to Dockerfile.cpu if no GPU
+    image: sos-backend:latest
+    container_name: sos-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - sos-data:/data
+    environment:
+      - SOS_MAX_UPLOAD_MB=500
+      - SOS_CORS_ORIGINS=["*"]
+      # Uncomment for CPU:
+      # - SOS_USE_HALF_PRECISION=false
+      # - SOS_MODEL_NAME=yolov8n.pt
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    # If no GPU, remove the `deploy` block above.
+
+volumes:
+  sos-data:
