@@ -26,7 +26,6 @@ RUN grep -vE '^(torch|torchvision)==' requirements.txt > /tmp/req-rest.txt && \
 COPY app ./app
 
 RUN mkdir -p /data/jobs /data/models
-VOLUME ["/data"]
 
 ENV SOS_STORAGE_DIR=/data/jobs \
     SOS_MODEL_DIR=/data/models \
